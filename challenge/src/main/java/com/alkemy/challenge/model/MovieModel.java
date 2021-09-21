@@ -1,14 +1,14 @@
 package com.alkemy.challenge.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class MovieModel {
 
     //private byte[] imagen;
     private String titulo;
-    private LocalDate fecha;
+    private Date fecha;
     
-    public MovieModel(String titulo, LocalDate fecha) {
+    public MovieModel(String titulo, Date fecha) {
         this.titulo = titulo;
         this.fecha = fecha;
     }
@@ -21,11 +21,11 @@ public class MovieModel {
         this.titulo = titulo;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

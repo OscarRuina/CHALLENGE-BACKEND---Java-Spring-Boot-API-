@@ -1,5 +1,6 @@
 package com.alkemy.challenge.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,8 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 @Entity
 @Table(name = "genero")
+@RestResource(rel = "genres",path = "genre")
 public class Genre {
 
     @Id
@@ -25,7 +29,7 @@ public class Genre {
     //private byte[] imagen;
 
     @OneToMany
-    private Set<Movie> movies; 
+    private Set<Movie> movies = new HashSet<>(); 
 
     public Genre(){}
 
@@ -62,38 +66,4 @@ public class Genre {
         return "Genre [nombre=" + nombre + "]";
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (idGenre ^ (idGenre >>> 32));
-        result = prime * result + ((movies == null) ? 0 : movies.hashCode());
-        result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Genre other = (Genre) obj;
-        if (idGenre != other.idGenre)
-            return false;
-        if (movies == null) {
-            if (other.movies != null)
-                return false;
-        } else if (!movies.equals(other.movies))
-            return false;
-        if (nombre == null) {
-            if (other.nombre != null)
-                return false;
-        } else if (!nombre.equals(other.nombre))
-            return false;
-        return true;
-    }
-    
 }

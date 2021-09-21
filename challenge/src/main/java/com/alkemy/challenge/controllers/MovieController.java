@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import com.alkemy.challenge.entities.Character;
 import com.alkemy.challenge.entities.Movie;
 import com.alkemy.challenge.model.MovieModel;
+import com.alkemy.challenge.services.CharacterServiceImp;
 import com.alkemy.challenge.services.MovieServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class MovieController {
     
     @Autowired
     private MovieServiceImp service;
+
+    @Autowired
+    private CharacterServiceImp characterService; 
 
     @GetMapping("GET/movies")
     public List<MovieModel> list(){
@@ -70,6 +75,19 @@ public class MovieController {
         service.delete(id);
     }
     
+    @PutMapping("/movies/{id}/characters")
+    public ResponseEntity<?> addCharacters(@RequestBody Character character,@PathVariable long id){
+        try{
+            Movie existMovie = service.get(id);
+            Character exisCharacter = characterService.get(character.getIdCharacter());
+            existMovie.getCharacters().add(exisCharacter);
+            service.save(existMovie);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/movies/name")
     public ResponseEntity<List<Movie>> getByName(@RequestParam(name = "name") String titulo){
         try{

@@ -1,5 +1,6 @@
 package com.alkemy.challenge.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,8 +15,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import org.springframework.data.rest.core.annotation.RestResource;
+
 @Entity
 @Table(name = "personaje")
+@RestResource(rel = "characters",path = "character")
 public class Character {
 
     @Id
@@ -41,7 +47,8 @@ public class Character {
     @JoinTable(name = "personajes_peliculas",
         joinColumns = @JoinColumn(name = "personaje_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "pelicula_id", referencedColumnName = "id"))
-    private Set<Movie> movies;
+    @JsonIgnoreProperties("characters")
+    private Set<Movie> movies = new HashSet<>();
 
     public Character(){}
 
@@ -102,60 +109,7 @@ public class Character {
 
     @Override
     public String toString() {
-        return "Character [historia=" + historia + ", idCharacter=" + idCharacter + ", nombre=" + nombre + ", peso="
-                + peso + "]";
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + edad;
-        result = prime * result + ((movies == null) ? 0 : movies.hashCode());
-        result = prime * result + ((historia == null) ? 0 : historia.hashCode());
-        result = prime * result + (int) (idCharacter ^ (idCharacter >>> 32));
-        result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-        long temp;
-        temp = Double.doubleToLongBits(peso);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Character other = (Character) obj;
-        if (edad != other.edad)
-            return false;
-        if (movies == null) {
-            if (other.movies != null)
-                return false;
-        } else if (!movies.equals(other.movies))
-            return false;
-        if (historia == null) {
-            if (other.historia != null)
-                return false;
-        } else if (!historia.equals(other.historia))
-            return false;
-        if (idCharacter != other.idCharacter)
-            return false;
-        if (nombre == null) {
-            if (other.nombre != null)
-                return false;
-        } else if (!nombre.equals(other.nombre))
-            return false;
-        if (Double.doubleToLongBits(peso) != Double.doubleToLongBits(other.peso))
-            return false;
-        return true;
-    }
-
-    public boolean addMovie(Movie movie){
-        return movies.add(movie);
+        return "nombre: " + nombre + " edad: " + edad + " peso: " + peso + " historia: " + historia + "peliculas: ";
     }
 
 }
