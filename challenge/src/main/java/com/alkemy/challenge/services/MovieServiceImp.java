@@ -35,4 +35,8 @@ public class MovieServiceImp implements IMovieService{
        repo.deleteById(id);
    }
 
+   @Transactional(readOnly = true)
+   public List<Movie> getByName(String nombre){
+       return repo.findByTitulo(nombre);
+   }
 }

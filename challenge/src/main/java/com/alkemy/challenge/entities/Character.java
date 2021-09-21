@@ -154,4 +154,8 @@ public class Character {
         return true;
     }
 
+    public boolean addMovie(Movie movie){
+        return movies.add(movie);
+    }
+
 }

@@ -1,8 +1,10 @@
 package com.alkemy.challenge.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.alkemy.challenge.entities.Character;
+import com.alkemy.challenge.entities.Movie;
 import com.alkemy.challenge.repositories.ICharacterRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +35,28 @@ public class CharacterServiceImp implements ICharacterService{
     @Transactional
     public void delete(long id){
         repo.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Character> getByNombre(String nombre){
+        return repo.findByNombre(nombre);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Character> getByAge(int edad){
+        return repo.findByEdad(edad);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Character> getByIdMovie(long idMovie){
+        List<Character> characters = new ArrayList<Character>();
+        for(Character c : repo.findAll()){
+            for(Movie m : c.getMovies()){
+                if(m.getIdMovie() == idMovie){
+                    characters.add(c);
+                }
+            }
+        }
+        return characters;
     }
 }
