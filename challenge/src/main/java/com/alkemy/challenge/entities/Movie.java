@@ -32,7 +32,7 @@ public class Movie {
     private String titulo;
 
     @Column(name = "fecha")
-    private Date fechaCreacion;
+    private Date fecha;
 
     @Column(name = "calificacion")
     private int calificacion;
@@ -43,9 +43,9 @@ public class Movie {
     
     public Movie(){}
 
-    public Movie(String titulo, Date fechaCreacion, int calificacion) {
+    public Movie(String titulo, Date fecha, int calificacion) {
         this.titulo = titulo;
-        this.fechaCreacion = fechaCreacion;
+        this.fecha = fecha;
         this.calificacion = calificacion;
     }
 
@@ -66,11 +66,11 @@ public class Movie {
     }
 
     public Date getFechaCreacion() {
-        return fechaCreacion;
+        return fecha;
     }
 
     public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+        this.fecha = fechaCreacion;
     }
 
     public int getCalificacion() {
@@ -91,7 +91,7 @@ public class Movie {
 
     @Override
     public String toString() { 
-        return "titulo: " + titulo + " fecha de creacion: " + fechaCreacion + " calificacion: " + calificacion;
+        return "titulo: " + titulo + " fecha de creacion: " + fecha + " calificacion: " + calificacion;
     }
 
 }

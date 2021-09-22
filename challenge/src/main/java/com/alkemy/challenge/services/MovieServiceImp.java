@@ -39,4 +39,13 @@ public class MovieServiceImp implements IMovieService{
    public List<Movie> getByName(String nombre){
        return repo.findByTitulo(nombre);
    }
+
+   @Transactional(readOnly = true)
+   public List<Movie> getByOrder(String order){
+       if(order.equals("ASC")){
+           return repo.findByOrderByFechaAsc();
+       }else{
+           return repo.findByOrderByFechaDesc();
+       }
+   }
 }

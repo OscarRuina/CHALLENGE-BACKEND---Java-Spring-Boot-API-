@@ -3,11 +3,14 @@ package com.alkemy.challenge.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import com.alkemy.challenge.entities.Character;
+import com.alkemy.challenge.entities.Genre;
 import com.alkemy.challenge.entities.Movie;
 import com.alkemy.challenge.model.MovieModel;
 import com.alkemy.challenge.services.CharacterServiceImp;
+import com.alkemy.challenge.services.GenreServiceImp;
 import com.alkemy.challenge.services.MovieServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +32,14 @@ public class MovieController {
     private MovieServiceImp service;
 
     @Autowired
+    private GenreServiceImp genreService;
+
+    @Autowired
     private CharacterServiceImp characterService; 
 
     @GetMapping("GET/movies")
     public List<MovieModel> list(){
+        //puede retornar lista vacia si no hay nada cargado
         List<MovieModel> models = new ArrayList<MovieModel>();
         for(Movie c : service.listAll()){
             models.add(new MovieModel(c.getTitulo(),c.getFechaCreacion()));
@@ -98,4 +105,24 @@ public class MovieController {
         }
     }
 
+    @GetMapping("/movies/genre")
+    public ResponseEntity<Set<Movie>> getByGenre(@RequestParam(name = "genre") long idGenre){
+        try{
+            Genre g = genreService.get(idGenre);
+            Set<Movie> movies = g.getMovies();
+            return new ResponseEntity<Set<Movie>>(movies,HttpStatus.OK);
+        }catch(NoSuchElementException e){
+            return new ResponseEntity<Set<Movie>>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/movies/order")
+    public ResponseEntity<List<Movie>> getByOrder(@RequestParam(name = "order") String order){
+        try{
+            List<Movie> movies = service.getByOrder(order);
+            return new ResponseEntity<List<Movie>>(movies,HttpStatus.OK);
+        }catch(NoSuchElementException e){
+            return new ResponseEntity<List<Movie>>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

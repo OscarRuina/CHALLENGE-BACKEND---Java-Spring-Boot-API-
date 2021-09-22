@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface IMovieRepository extends JpaRepository<Movie,Long>{
 
     public List<Movie> findByTitulo(String titulo);
-
+    public List<Movie> findByOrderByFechaAsc();
+    public List<Movie> findByOrderByFechaDesc();
 }

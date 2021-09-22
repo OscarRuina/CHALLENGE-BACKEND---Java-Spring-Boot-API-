@@ -3,6 +3,7 @@ package com.alkemy.challenge.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import com.alkemy.challenge.entities.Character;
 import com.alkemy.challenge.entities.Movie;
@@ -33,6 +34,7 @@ public class CharacterController {
 
     @GetMapping("/characters")
     public List<CharacterModel> list(){
+        //puede retornar lista vacia si no hay nada cargado
         List<CharacterModel> models = new ArrayList<CharacterModel>();
         for(Character c : service.listAll()){
             models.add(new CharacterModel(c.getNombre()));
@@ -110,12 +112,13 @@ public class CharacterController {
     }
 
     @GetMapping("GET/characters/movies")
-    public ResponseEntity<List<Character>> getByIdMovie(@RequestParam(name = "movies") long idMovie){
+    public ResponseEntity<Set<Character>> getByIdMovie(@RequestParam(name = "movies") long idMovie){
         try{
-            List<Character> characters = service.getByIdMovie(idMovie);
-            return new ResponseEntity<List<Character>>(characters,HttpStatus.OK);
+            Movie movie = movieService.get(idMovie);
+            Set<Character> characters = movie.getCharacters();
+            return new ResponseEntity<Set<Character>>(characters,HttpStatus.OK);
         }catch(NoSuchElementException e){
-            return new ResponseEntity<List<Character>>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Set<Character>>(HttpStatus.NOT_FOUND);
         }
     }
 
