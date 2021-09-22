@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -32,6 +33,7 @@ public class Movie {
     private String titulo;
 
     @Column(name = "fecha")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
     @Column(name = "calificacion")
@@ -65,12 +67,12 @@ public class Movie {
         this.titulo = titulo;
     }
 
-    public Date getFechaCreacion() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fecha = fechaCreacion;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public int getCalificacion() {

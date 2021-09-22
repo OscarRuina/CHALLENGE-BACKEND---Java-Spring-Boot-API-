@@ -42,7 +42,7 @@ public class MovieController {
         //puede retornar lista vacia si no hay nada cargado
         List<MovieModel> models = new ArrayList<MovieModel>();
         for(Movie c : service.listAll()){
-            models.add(new MovieModel(c.getTitulo(),c.getFechaCreacion()));
+            models.add(new MovieModel(c.getTitulo(),c.getFecha()));
         }
         return models;
     }
@@ -67,7 +67,7 @@ public class MovieController {
         try{
             Movie existMovie = service.get(id);
             existMovie.setTitulo(movie.getTitulo());
-            existMovie.setFechaCreacion(movie.getFechaCreacion());
+            existMovie.setFecha(movie.getFecha());
             existMovie.setCalificacion(movie.getCalificacion());
             existMovie.setCharacters(movie.getCharacters());
             service.save(existMovie);
