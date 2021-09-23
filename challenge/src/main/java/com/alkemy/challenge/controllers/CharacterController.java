@@ -14,6 +14,7 @@ import com.alkemy.challenge.services.MovieServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ public class CharacterController {
     private MovieServiceImp movieService;
 
     @GetMapping("/characters")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<CharacterModel> list(){
         //puede retornar lista vacia si no hay nada cargado
         List<CharacterModel> models = new ArrayList<CharacterModel>();
@@ -43,6 +45,7 @@ public class CharacterController {
     }
 
     @GetMapping("/characters/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Character> get(@PathVariable long id){
         try{
             Character character = service.get(id);
@@ -53,11 +56,13 @@ public class CharacterController {
     }
 
     @PostMapping("/characters")
+    @PreAuthorize("hasRole('ADMIN')")
     public void add(@RequestBody Character character){
         service.save(character);
     }
 
     @PutMapping("/characters/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> update(@RequestBody Character character,@PathVariable long id){
         try{
             Character existCharacter = service.get(id);
@@ -74,11 +79,13 @@ public class CharacterController {
     }
     
     @DeleteMapping("/characters/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable long id){
         service.delete(id);
     }
 
     @PutMapping("/characters/{id}/movies")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addMovies(@RequestBody Movie movie,@PathVariable long id){
         try{
             Character existCharacter = service.get(id);
@@ -92,6 +99,7 @@ public class CharacterController {
     }
 
     @GetMapping("GET/characters/name")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<Character>> getByName(@RequestParam(name = "name") String nombre){
         try{
             List<Character> characters = service.getByNombre(nombre);
@@ -102,6 +110,7 @@ public class CharacterController {
     }
 
     @GetMapping("GET/characters/age")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<Character>> getByAge(@RequestParam(name = "age") int edad){
         try{
             List<Character> characters = service.getByAge(edad);
@@ -112,6 +121,7 @@ public class CharacterController {
     }
 
     @GetMapping("GET/characters/movies")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Set<Character>> getByIdMovie(@RequestParam(name = "movies") long idMovie){
         try{
             Movie movie = movieService.get(idMovie);

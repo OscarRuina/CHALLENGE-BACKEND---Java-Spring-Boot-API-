@@ -11,6 +11,7 @@ import com.alkemy.challenge.services.MovieServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,16 +29,19 @@ public class GenreController {
     private MovieServiceImp movieService;
 
     @GetMapping("/genres")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Genre> list(){
         return service.listAll();
     }
 
     @PostMapping("/genres")
+    @PreAuthorize("hasRole('ADMIN')")
     public void add(@RequestBody Genre genre){
         service.save(genre);
     }
 
     @PutMapping("/genres/{id}/movies")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addMovies(@RequestBody Movie movie,@PathVariable long id){
         try{
             Genre existGenre = service.get(id);

@@ -16,6 +16,7 @@ import com.alkemy.challenge.services.MovieServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,7 @@ public class MovieController {
     private CharacterServiceImp characterService; 
 
     @GetMapping("GET/movies")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<MovieModel> list(){
         //puede retornar lista vacia si no hay nada cargado
         List<MovieModel> models = new ArrayList<MovieModel>();
@@ -48,6 +50,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Movie> get(@PathVariable long id){
         try{
             Movie movie = service.get(id);
@@ -58,12 +61,14 @@ public class MovieController {
     }
 
     @PostMapping("/movies")
+    @PreAuthorize("hasRole('ADMIN')")
     public void add(@RequestBody Movie movie){
         service.save(movie);
     }
 
     @PutMapping("/movies/{id}")
-    public ResponseEntity<?> get(@RequestBody Movie movie,@PathVariable long id){
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> update(@RequestBody Movie movie,@PathVariable long id){
         try{
             Movie existMovie = service.get(id);
             existMovie.setTitulo(movie.getTitulo());
@@ -78,11 +83,13 @@ public class MovieController {
     }
 
     @DeleteMapping("/movies/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable long id){
         service.delete(id);
     }
     
     @PutMapping("/movies/{id}/characters")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addCharacters(@RequestBody Character character,@PathVariable long id){
         try{
             Movie existMovie = service.get(id);
@@ -96,6 +103,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies/name")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<Movie>> getByName(@RequestParam(name = "name") String titulo){
         try{
             List<Movie> movies = service.getByName(titulo);
@@ -106,6 +114,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies/genre")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Set<Movie>> getByGenre(@RequestParam(name = "genre") long idGenre){
         try{
             Genre g = genreService.get(idGenre);
@@ -117,6 +126,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies/order")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<Movie>> getByOrder(@RequestParam(name = "order") String order){
         try{
             List<Movie> movies = service.getByOrder(order);
