@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -30,13 +33,16 @@ public class Movie {
     //private byte[] imagen;
 
     @Column(name = "titulo")
+    @NotBlank
     private String titulo;
 
     @Column(name = "fecha")
+    @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
     @Column(name = "calificacion")
+    @NotNull
     private int calificacion;
 
     @ManyToMany(mappedBy = "movies")

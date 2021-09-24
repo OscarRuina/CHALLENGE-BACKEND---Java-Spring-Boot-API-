@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,15 +35,20 @@ public class Character {
     //private byte[] imagen;
 
     @Column(name = "nombre")
+    @NotBlank
     private String nombre;
 
     @Column(name = "edad")
+    @NotNull
     private int edad;
 
     @Column(name = "peso")
+    @NotNull
     private float peso;
 
     @Column(name = "historia")
+    @NotBlank
+    @Size(max = 100)
     private String historia;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
