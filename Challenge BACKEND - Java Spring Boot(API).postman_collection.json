@@ -1,0 +1,566 @@
+{
+	"info": {
+		"_postman_id": "2cc89946-bfde-4b41-8a10-582af55f53d4",
+		"name": "Challenge BACKEND - Java Spring Boot(API)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Endpoint /characters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				},
+				"description": "List of characters"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /characters/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/characters/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"1"
+					]
+				},
+				"description": "Get character by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /characters",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Goofy\",\r\n    \"edad\":30,\r\n    \"peso\":10.5,\r\n    \"historia\":\"Es el perro de Micky Mouse\",\r\n    \"movies\":[]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				},
+				"description": "Save new character"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /characters/id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Mickey Mouse\",\r\n    \"edad\":50,\r\n    \"peso\":8,\r\n    \"historia\":\"Es la mascota principal de Disney\",\r\n    \"movies\":[]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"1"
+					]
+				},
+				"description": "Update character"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /characters/id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/characters/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"1"
+					]
+				},
+				"description": "Delete character"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint GET/movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/GET/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"GET",
+						"movies"
+					]
+				},
+				"description": "List of movies"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /movies/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1"
+					]
+				},
+				"description": "Get movie by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /movies",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\":\"Mickey and the BeanStalck\",\r\n    \"fecha\":\"1950-10-20\",\r\n    \"calificacion\": 4,\r\n    \"characters\":[]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					]
+				},
+				"description": "Insert new movie"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /movies/id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"titulo\": \"Mickey and the BeanStalck\",\r\n    \"fecha\": \"1950-10-25\",\r\n    \"calificacion\": 4,\r\n    \"characters\": [\r\n        {\r\n            \"idCharacter\": 1,\r\n            \"nombre\": \"Goofy\",\r\n            \"edad\": 30,\r\n            \"peso\": 10.5,\r\n            \"historia\": \"Es el perro de Micky Mouse\"\r\n        },\r\n        {\r\n            \"idCharacter\": 2,\r\n            \"nombre\": \"Mickey Mouse\",\r\n            \"edad\": 50,\r\n            \"peso\": 8.0,\r\n            \"historia\": \"Es la mascota principal de Disney\"\r\n        }\r\n    ]\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1"
+					]
+				},
+				"description": "Update movie"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /movies/id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1"
+					]
+				},
+				"description": "Delete movie"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint GET/characters/name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/GET/characters/name?name=Goofy",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"GET",
+						"characters",
+						"name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Goofy"
+						}
+					]
+				},
+				"description": "Filter by name"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint GET/characters/age",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/GET/characters/age?age=50",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"GET",
+						"characters",
+						"age"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "50"
+						}
+					]
+				},
+				"description": "Filter by age"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /characters/id/movies",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idMovie\": 1,\r\n    \"titulo\": \"Mickey and the BeanStalck\",\r\n    \"fecha\": \"1950-10-19\",\r\n    \"calificacion\": 4,\r\n    \"characters\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters/1/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"1",
+						"movies"
+					]
+				},
+				"description": "Insert movie into character"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /movies/name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/name?name=Mickey and the BeanStalck",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Mickey and the BeanStalck"
+						}
+					]
+				},
+				"description": "Filter movie by name"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint GET/characters/movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/GET/characters/movies?movies=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"GET",
+						"characters",
+						"movies"
+					],
+					"query": [
+						{
+							"key": "movies",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Filter by idMovie"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /movies/order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/order?order=ASC",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"order"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "ASC"
+						}
+					]
+				},
+				"description": "Filter movie by order"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /genres",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/genres",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres"
+					]
+				},
+				"description": "List of genrers"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /genres",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"aventura\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/genres",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres"
+					]
+				},
+				"description": "Add new genre "
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /genres/id/movies",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idMovie\": 1,\r\n    \"titulo\": \"Mickey and the BeanStalck\",\r\n    \"fecha\": \"1950-10-19\",\r\n    \"calificacion\": 4,\r\n    \"characters\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/genres/1/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres",
+						"1",
+						"movies"
+					]
+				},
+				"description": "Add movie to genre"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint /movies/genre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/genre?genre=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"genre"
+					],
+					"query": [
+						{
+							"key": "genre",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Filter movies by idGenre"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint auth/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Eduardo\",\r\n    \"username\":\"edu\",\r\n    \"email\":\"eduardo@hotmail.com\",\r\n    \"role\":[\"user\",\"admin\"],\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				},
+				"description": "User register"
+			},
+			"response": []
+		},
+		{
+			"name": "Endpoint auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"edu\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "login with username and pasword,return a token"
+			},
+			"response": []
+		}
+	]
+}
