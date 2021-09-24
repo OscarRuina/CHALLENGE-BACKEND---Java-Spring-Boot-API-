@@ -6,6 +6,7 @@ Use para realizar el challenge:
   IDE Visual Studio Code,
   Version Java 8,
   MySQL Workbench para la base de datos,
+  El archivo de properties esta configurado para conectarse al workbench con usuario y contraseña "root",
   Postman para probar los endpoints.
 
 Lo primero que hay que hacer es crear la base de datos:
