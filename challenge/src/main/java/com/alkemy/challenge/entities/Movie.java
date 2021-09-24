@@ -29,8 +29,6 @@ public class Movie {
     @Column(name = "id")
     private long idMovie;
     
-    //private byte[] imagen;
-
     @Column(name = "titulo")
     @NotBlank
     private String titulo;

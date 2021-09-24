@@ -28,8 +28,6 @@ public class Genre {
     @NotBlank
     private String nombre;
 
-    //private byte[] imagen;
-
     @OneToMany
     private Set<Movie> movies = new HashSet<>(); 
 

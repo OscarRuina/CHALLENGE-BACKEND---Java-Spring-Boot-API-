@@ -32,8 +32,6 @@ public class Character {
     @Column(name = "id")
     private long idCharacter;
 
-    //private byte[] imagen;
-
     @Column(name = "nombre")
     @NotBlank
     private String nombre;
